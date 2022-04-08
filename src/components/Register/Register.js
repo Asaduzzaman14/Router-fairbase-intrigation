@@ -1,19 +1,22 @@
+
 import React from 'react';
 
-const Login = () => {
+const Register = () => {
     return (
         <div>
-            <h2>pleass Log in</h2>
+            <h3>Pleass Register Now</h3>
+            <button style={{ margin: '20px' }}>sign in to goolge</button>
             <form>
-
+                <input type="text" placeholder='Your name' />
+                <br />
                 <input type="email" placeholder='Your email' />
                 <br />
                 <input type="password" name="" id="" placeholder='Your passwrod' />
                 <br />
-                <input type="submit" value='log In' />
+                <input type="submit" value="register" />
             </form>
         </div>
     );
 };
 
-export default Login;
+export default Register;
