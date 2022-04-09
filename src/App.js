@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import Product from './components/Product/Product'
 import Order from './components/Order/Order'
 import Register from './components/Register/Register';
+import Require from './components/Require/Require';
 
 
 function App() {
@@ -17,7 +18,13 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/product' element={<Product></Product>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
-        <Route path='/order' element={<Order></Order>}></Route>
+
+        <Route path='/order' element={
+          <Require>
+            <Order></Order>
+          </Require>}
+        ></Route>
+
       </Routes>
 
     </div>
