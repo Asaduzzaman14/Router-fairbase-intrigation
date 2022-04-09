@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useEffect, useState } from "react"
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import app from "../fairbase.init";
 
 
@@ -12,6 +12,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({})
 
 
+
     const signInWithGoogle = () => {
         signInWithPopup(auth, googleProvider)
             .then(res => {
@@ -19,12 +20,19 @@ const useFirebase = () => {
                 console.log(user);
             })
             .catch(err => console.log(err))
-
-
-        console.log('sign in successful');
+    }
+    const handelSignOut = () => {
+        signOut(auth)
+            .then(() => { })
     }
 
 
-    return { user, signInWithGoogle }
+    useEffect(() => {
+        onAuthStateChanged(auth, user => {
+            setUser(user)
+        })
+    }, [])
+
+    return { user, signInWithGoogle, handelSignOut }
 }
 export default useFirebase
